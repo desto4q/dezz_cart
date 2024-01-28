@@ -4,19 +4,152 @@
   font-family: "Montserrat";
   padding: 0;
   margin: 0;
+  transition: 0.2s ease;
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  // background-color: green;
-}
+$bg: #333237;
+$accent: #F07457;
+
+body {}
 
 .page_cont {
   align-self: center;
   min-height: 100dvh;
   width: 100vw;
   max-width: 1100px;
+
   // background-color: red;
+}
+
+.heading {
+  background: $bg;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+}
+
+.strict_width {
+  padding: 0 12px;
+  width: 100vw;
+  max-width: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: whitesmoke;
+  font-size: 14px;
+
+  a {
+    color: whitesmoke;
+  }
+
+  a:hover {
+    color: $accent;
+  }
+
+  .price {
+    color: $accent;
+  }
+
+  .link {
+    display: flex;
+    gap: 8px;
+  }
+}
+
+nav {
+  background: $bg;
+  display: grid;
+  place-items: center;
+
+  .strict_width {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 12px;
+  }
+
+  .logo {
+    font-size: 48px;
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+
+    span {
+      display: flex;
+      gap: 22px;
+
+      a {
+        text-transform: uppercase;
+        // font-weight: 600;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .cart {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .search {
+      display: grid;
+      place-items: center;
+    }
+
+    .icon {
+      background-color: $accent;
+      display: grid;
+      place-items: center;
+      padding: 4px;
+      border-radius: 100%;
+    }
+
+    .icon:hover {
+      background-color: white;
+
+    }
+  }
+
+}
+
+.curloc {
+  background-color: $bg;
+  display: grid;
+  place-items: center;
+  padding:24px 0;
+
+  .strict_width {
+    display: flex;
+    justify-content: left;
+    gap: 12px;
+  }
+
+  .loc_last {
+    color: $accent;
+    .icon {
+      color: white;
+      height: 14px;
+      width: 14px;
+
+    }
+  }
+
+  .seperator {
+    display: flex;
+    align-items: center;
+  }
+
+  .loc {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
 }
