@@ -4,16 +4,24 @@ import Nav from '../components/Nav'
 import Genre from '../pages/Genre'
 import Home from '../pages/Home'
 import Currloc from "../components/Currloc"
-import {Route} from "wouter"
+import { Link, Route, Switch } from "wouter"
+import Title from '../components/Title'
 
 function PageRouter() {
   return (
     <>
-    <Heading/>
-    <Nav/>
-    <Currloc/>
-    <Route path='/' component={Home}/>
-    <Route path='/Genre' component={Genre}/>
+      <Heading />
+      <Nav />
+      <Title />
+      <Currloc />
+      <Switch>
+        <Route path='/' component={Home} />
+        <Route path='/Genre' component={Genre} />
+        <Route >
+          page not found 
+          <Link href='/'>HomePage</Link>
+        </Route>
+      </Switch>
     </>
   )
 }
