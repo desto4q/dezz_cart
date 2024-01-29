@@ -6,6 +6,7 @@ import Home from '../pages/Home'
 import Currloc from "../components/Currloc"
 import { Link, Route, Switch } from "wouter"
 import Title from '../components/Title'
+import Footer from '../components/Footer'
 
 function PageRouter() {
   return (
@@ -22,6 +23,7 @@ function PageRouter() {
           <Link href='/'>HomePage</Link>
         </Route>
       </Switch>
+      <Footer/>
     </>
   )
 }

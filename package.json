@@ -11,9 +11,13 @@
   },
   "dependencies": {
     "@tabler/icons-react": "^2.46.0",
+    "@types/react-lines-ellipsis": "^0.15.5",
     "axios": "^1.6.7",
+    "axios-cache-interceptor": "^1.5.1",
+    "nuka-carousel": "^7.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-lines-ellipsis": "^0.15.4",
     "sass": "^1.70.0",
     "webfontloader": "^1.6.28",
     "wouter": "^2.12.1",
