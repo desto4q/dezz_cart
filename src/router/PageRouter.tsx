@@ -1,31 +1,32 @@
-
-import Heading from '../components/Heading'
-import Nav from '../components/Nav'
-import Genre from '../pages/Genre'
-import Home from '../pages/Home'
-import Currloc from "../components/Currloc"
-import { Link, Route, Switch } from "wouter"
-import Title from '../components/Title'
-import Footer from '../components/Footer'
+import Heading from "../components/Heading";
+import Nav from "../components/Nav";
+import Genre from "../pages/Genre";
+import Home from "../pages/Home";
+import Currloc from "../components/Currloc";
+import { Route, BrowserRouter, Routes } from "react-router-dom";
+import Title from "../components/Title";
+import Footer from "../components/Footer";
+import Categories from "../pages/Categories";
 
 function PageRouter() {
-  return (
-    <>
-      <Heading />
-      <Nav />
-      <Title />
-      <Currloc />
-      <Switch>
-        <Route path='/' component={Home} />
-        <Route path='/Genre' component={Genre} />
-        <Route >
-          page not found 
-          <Link href='/'>HomePage</Link>
-        </Route>
-      </Switch>
-      <Footer/>
-    </>
-  )
+	return (
+		<>
+			<Heading />
+
+			<Title />
+
+			<BrowserRouter>
+				<Currloc />
+				<Nav />
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/Genre" element={<Genre />} />
+					<Route path="/categories" element={<Categories />} />
+				</Routes>
+			</BrowserRouter>
+			<Footer />
+		</>
+	);
 }
 
-export default PageRouter
+export default PageRouter;

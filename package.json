@@ -19,9 +19,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-lines-ellipsis": "^0.15.4",
+    "react-router-dom": "^6.21.3",
     "sass": "^1.70.0",
     "webfontloader": "^1.6.28",
-    "wouter": "^2.12.1",
     "zustand": "^4.5.0"
   },
   "devDependencies": {

@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { Spin as Hamburger } from "hamburger-react";
 import { nav_links } from "../data/data";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 function Nav() {
 	let [sideNav, SetSideNav] = useState<boolean>(false);
 	return (

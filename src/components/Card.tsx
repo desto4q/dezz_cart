@@ -4,14 +4,8 @@ import { useState } from "react";
 // import LinesEllipsis from "react-lines-ellipsis";
 
 type CardProps = {
-	category?: {
-		creationAt?: Date;
-		id?: number;
-		image?: string;
-		name?: string;
-		updatedAt?: string;
-	};
-	id: number;
+	category?: string;
+	id: number | unknown;
 	images: any[];
 	price: number;
 	title: string;
@@ -26,6 +20,7 @@ function Card({ category, title, desription, images, price }: CardProps) {
 		<div className="card">
 			<div className="img_cont">
 				<Carousel
+					
 					wrapAround={true}
 					renderCenterLeftControls={({ previousSlide }) => {
 						return (
@@ -52,7 +47,7 @@ function Card({ category, title, desription, images, price }: CardProps) {
 
 			<div className="description">{desription}</div>
 
-			<div className="category">{category?.name}</div>
+			<div className="category">{category}</div>
 
 			<div id="ttt" className="card_info">
 				<div className="price">
