@@ -173,9 +173,11 @@ nav {
   background-color: $bg;
   display: grid;
   place-items: center;
-  padding: 24px 0;
+  padding: 24px;
+  
 
   .strict_width {
+    padding: 0 12px;
     display: flex;
     justify-content: left;
     gap: 12px;
@@ -287,7 +289,7 @@ nav {
 
   .img_cont {
     width: 100%;
-    
+
 
     img {
       width: 100%;
@@ -503,8 +505,50 @@ footer {
 .categories {
   display: grid;
   place-items: center;
-
+  .curr_title {
+    .strict_width {
+      flex-direction: row;
+    }
+  }
   .strict_width {
     flex-direction: column;
+
+    .feed {
+      .strict_width {
+        flex-direction: row;
+      }
+    }
+  }
+
+  .selected_value {
+    color: $bg;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    font-weight: 600;
+
+    span {
+      background: $bg;
+      padding: 4px;
+      margin: 4px 0;
+      color: white;
+      font-weight: 500;
+      border-radius: 4px;
+    }
+  }
+ 
+
+  select {
+    padding: 4px;
+    background: none;
+    outline: none;
+    border: none;
+
+    background-color: $bg;
+    color: $accent;
+    padding: 4px;
+    font-size: 18px;
+    margin: 4px 0;
   }
 }

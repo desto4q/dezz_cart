@@ -13,17 +13,18 @@ let fetch_products = async (url: string, limit: number) => {
 	//
 };
 
-let fetch_products_cat = async (category: number, offset: number) => {
-	let url = " https://api.escuelajs.co/api/v1/products/";
-	let structured_url = url + "?categoryId=" + category;
-	+"&offset=" + offset;
+let fetch_products_cat = async (category: string) => {
+
+	let url = " https://dummyjson.com/products/category/";
+	let structured_url = url + category;
+
 	let { data } = await axios.get(structured_url);
 
 	return data;
 };
 
 let fetch_categories = async () => {
-	let { data } = await axios.get("https://api.escuelajs.co/api/v1/categories");
+	let { data } = await axios.get("https://dummyjson.com/products/categories");
 	return data;
 };
 

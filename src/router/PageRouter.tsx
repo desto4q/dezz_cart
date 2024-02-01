@@ -13,11 +13,10 @@ function PageRouter() {
 		<>
 			<Heading />
 
-			<Title />
-
 			<BrowserRouter>
-				<Currloc />
+				<Title />
 				<Nav />
+				<Currloc />
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/Genre" element={<Genre />} />

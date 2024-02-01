@@ -10,112 +10,98 @@ function Categories() {
 	let [searchParams, setSearchParams] = useSearchParams();
 	let cat = searchParams.get("category");
 
-	// API functions for fetching products and categories
 	let { fetch_products_cat, fetch_categories } = Api;
 
 	// Define interfaces and types for better type checking
-	interface Product {
+	type ProductOBj = {
 		title: string;
 		images: string[];
-		image?: string;
 		price: number;
-		category: object;
+		category: string;
 		description: string;
-		id?: number | unknown;
+		id: number;
+	};
+	interface Product {
+		limit: number;
+		products: ProductOBj[];
+		skip: number;
+		total: number;
 	}
 
-	type CategoryProp = {
-		creationAt: Date;
-		id: number;
-		image: string;
-		name: string;
-		updatedAt: Date;
-	};
-
-	type SelectProp = {
-		id: number;
-		text: string;
-	};
-
 	// State variables for managing component state
-	let [data, setData] = useState<Product[]>([]);
-	let [categories, setCategories] = useState<CategoryProp[]>();
-	let [selected, setSelect] = useState<SelectProp>();
+	let [data, setData] = useState<Product | null>();
+	let [categories, setCategories] = useState<string[]>();
+	let [selected, setSelect] = useState<string>("");
 
-	// Effect to fetch products when the component mounts
-	useEffect(
-		function () {
-			let fetchData = async () => {
-				categories?.forEach(async ({ id, name }) => {
-					if (cat == name) {
-						setData(await fetch_products_cat(id, 1));
-					}
-				});
-			};
-			fetchData();
-		},
-		[selected]
-	);
-
-	// Effect to fetch categories when the component mounts
 	useEffect(() => {
 		let fetcher = async () => {
-			let resp = await fetch_categories().then((res) => {
-				setSelect({ id: res[0].id, text: res[0].name });
+			let resp = await fetch_categories().then(async (res) => {
+				if (cat) {
+					setSelect(cat);
+					setData(await fetch_products_cat(cat));
+					return res;
+				}
+
+				setSelect((prev) => (prev = res[0]));
+				setData(await fetch_products_cat(res[0]));
 				return res;
 			});
-
 			return setCategories(resp);
 		};
 		fetcher();
 	}, []);
 
-	// Effect to update URL search parameter when the selected category changes
 	useEffect(() => {
+		let fetcher_cats = async (selection: string) => {
+			setData(await fetch_products_cat(selection));
+		};
+
 		if (selected) {
-			setSearchParams({ category: selected.text });
+			setSearchParams({ category: selected });
+			fetcher_cats(selected);
 		}
 	}, [selected]);
 
-	let cards: JSX.Element[] = data?.map(
-		({ id, category, price, title, description, images }, key) => {
-			return (
-				<Card
-					key={key}
-					id={0}
-					category={category}
-					images={[...images]}
-					price={price}
-					title={title}
-					desription={description}
-				/>
-			);
-		}
-	);
+	let cards: JSX.Element[] | null = data?.products
+		? data?.products?.map(
+				({ title, id, price, description, images, category }: ProductOBj) => {
+					return (
+						<Card
+							key={id}
+							title={title}
+							id={id}
+							price={price}
+							desription={description}
+							images={images}
+							category={category}
+						/>
+					);
+				}
+		  )
+		: null;
 
 	return (
 		<div className="categories">
 			<div className="strict_width">
 				<CurrTitle title="Categories" subTitle="List of Products" />
 
-				<Feed />
+				{/* Use Feed with content={cards} */}
+
+				<div className="selected_value">
+					selected:  
+					<span> { selected}</span>
+				</div>
 
 				<select
 					onChange={(e) => {
-						let number = e.target.value;
-						categories?.forEach(({ id, name }) => {
-							if (id == Number(number)) {
-								// Update the selected category when the dropdown changes
-								setSelect({ id: id, text: name });
-							}
-						});
+						setSelect(e.target.value);
 					}}
 					className="category_select"
 				>
 					{/* Render category options */}
-					{categories?.map(({ name, id }) => (
-						<option key={id} value={id}>
-							{name}
+					{categories?.map((item) => (
+						<option key={item} value={item}>
+							{item}
 						</option>
 					))}
 				</select>
@@ -123,13 +109,12 @@ function Categories() {
 				{/* Button for debugging/logging */}
 				<button
 					onClick={() => {
-						console.log(data);
+						console.log(selected);
 					}}
 				>
 					Click me
 				</button>
-
-				<Feed content={cards} />
+				<Feed  content={cards} />
 			</div>
 		</div>
 	);
